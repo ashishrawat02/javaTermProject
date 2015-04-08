@@ -151,6 +151,7 @@ public class Product {
 
     private String getResults(String query, String... params) {
         JsonArrayBuilder productArray = Json.createArrayBuilder();
+         JsonObjectBuilder jsonLastObj = null;
         String jsonString = new String();
         try (Connection conn = Credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -161,17 +162,16 @@ public class Product {
 
             while (rs.next()) {
                 JsonObjectBuilder jsonObject = Json.createObjectBuilder()
-                        //sb.append(String.format("%s\t%s\t%s\t%s\n", rs.getInt("productID"), rs.getString("name"), rs.getString("description"), rs.getInt("quantity")));
-                        //for conversion to json https://code.google.com/p/json-simple/downloads/detail?name=json-simple-1.1.1.jar
-
+                        
                         .add("productID", rs.getInt("productID"))
                         .add("name", rs.getString("name"))
                         .add("description", rs.getString("description"))
                         .add("quantity", rs.getInt("quantity"));
 
-                jsonString = jsonObject.build().toString();
+                jsonLastObj = jsonObject;
                 productArray.add(jsonObject);
             }
+                jsonString = jsonLastObj.build().toString();
 
         } catch (SQLException ex) {
             Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
