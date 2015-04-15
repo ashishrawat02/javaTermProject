@@ -17,33 +17,33 @@ import java.util.logging.Logger;
  */
 public class Credentials {
 
-      public static Connection getConnection() throws SQLException {
-        Connection conn = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            String jdbc = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" +
-            System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/ashish";
-            String user = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-            String pass = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");        
-            conn = DriverManager.getConnection(jdbc, user, pass);
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Credentials.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return conn;
-    }
-//    public static Connection getConnection() {
+//      public static Connection getConnection() throws SQLException {
 //        Connection conn = null;
 //        try {
 //            Class.forName("com.mysql.jdbc.Driver");
-//            String jdbc = "jdbc:mysql://localhost/ashish";
-//            String user = "root";
-//            String pass = "";
+//            String jdbc = "jdbc:mysql://" + System.getenv("OPENSHIFT_MYSQL_DB_HOST") + ":" +
+//            System.getenv("OPENSHIFT_MYSQL_DB_PORT") + "/ashish";
+//            String user = System.getenv("OPENSHIFT_MYSQL_DB_USERNAME");
+//            String pass = System.getenv("OPENSHIFT_MYSQL_DB_PASSWORD");        
 //            conn = DriverManager.getConnection(jdbc, user, pass);
-//
 //        } catch (ClassNotFoundException | SQLException ex) {
 //            Logger.getLogger(Credentials.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        return conn;
 //    }
+    public static Connection getConnection() {
+        Connection conn = null;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            String jdbc = "jdbc:mysql://localhost/college";
+            String user = "root";
+            String pass = "";
+            conn = DriverManager.getConnection(jdbc, user, pass);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Credentials.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return conn;
+    }
 
 }

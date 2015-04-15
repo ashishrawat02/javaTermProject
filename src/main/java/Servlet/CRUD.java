@@ -41,14 +41,14 @@ import javax.ws.rs.Produces;
  *
  * @author c0649005
  */
-@Path("/product")
-public class Product {
+@Path("/student")
+public class CRUD {
 
     @GET
     @Produces("application/json")
 
     public String doGet() {
-        String result = getResults("SELECT * FROM product");
+        String result = getResults("SELECT * FROM student");
         return result;
     }
 
@@ -57,7 +57,16 @@ public class Product {
     @Produces("application/json")
     public String doGet(@PathParam("id") String id) {
 
-        String result = getResults("SELECT * FROM PRODUCT where productID = ?", id);
+        String result = getResults("SELECT * FROM student where studentId = ?", id);
+        return result;
+
+    }
+
+    @GET
+    @Path("{id}/{password}")
+    @Produces("application/json")
+    public String doGet(@PathParam("id") String id, @PathParam("password") String password) {
+        String result = getResults("SELECT * FROM student where studentId = ? and password = ?", id, password);
         return result;
 
     }
@@ -87,11 +96,16 @@ public class Product {
         }
         System.out.println(map);
 
-        String na = map.get("name");
-        String des = map.get("description");
-        String qunt = map.get("quantity");
+        String fName = map.get("firstName");
+        String lName = map.get("lastName");
+        String cor = map.get("course");
+        String dur = map.get("duration");
+        String ad = map.get("address");
+        String bir = map.get("birthDate");
+        String num = map.get("phoneNumber");
 
-        doUpdate("INSERT INTO product (name,description,quantity)VALUES (?,?,?)", na, des, qunt);
+        doUpdate("INSERT INTO student (firstName,lastName,course,duration,address,birthDate,phoneNumber)VALUES (?,?,?,?,?,?,?)", fName,
+                lName, cor, dur, ad, bir, num);
     }
 
     @PUT
@@ -120,18 +134,23 @@ public class Product {
         }
         System.out.println(map);
 
-        String na = map.get("name");
-        String des = map.get("description");
-        String qunt = map.get("quantity");
+        String fName = map.get("firstName");
+        String lName = map.get("lastName");
+        String cor = map.get("course");
+        String dur = map.get("duration");
+        String ad = map.get("address");
+        String bir = map.get("birthDate");
+        String num = map.get("phoneNumber");
 
-        doUpdate("update product set productID = ?, name = ?, description = ?, quantity = ? where productID = ?", id, na, des, qunt, id);
+        doUpdate("update student set studentId = ?, firstName = ?, lastName = ?, course = ?,"
+                + "duration = ?, address = ?, birthDate = ?, phoneNumber = ?, where studentId = ?", id, fName, lName, cor, dur, ad, bir, num, id);
     }
 
     @DELETE
     @Path("{id}")
     public void doDelete(@PathParam("id") String id, String str) {
 
-        doUpdate("DELETE FROM product WHERE productID = ?", id);
+        doUpdate("DELETE FROM student WHERE studentId = ?", id);
 
     }
 
@@ -144,14 +163,14 @@ public class Product {
             }
             numChanges = pstmt.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return numChanges;
     }
 
     private String getResults(String query, String... params) {
         JsonArrayBuilder productArray = Json.createArrayBuilder();
-         JsonObjectBuilder jsonLastObj = null;
+        JsonObjectBuilder jsonLastObj = null;
         String jsonString = new String();
         try (Connection conn = Credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
@@ -162,19 +181,22 @@ public class Product {
 
             while (rs.next()) {
                 JsonObjectBuilder jsonObject = Json.createObjectBuilder()
-                        
-                        .add("productID", rs.getInt("productID"))
-                        .add("name", rs.getString("name"))
-                        .add("description", rs.getString("description"))
-                        .add("quantity", rs.getInt("quantity"));
+                        .add("studentId", rs.getInt("studentId"))
+                        .add("firstName", rs.getString("firstName"))
+                        .add("lastName", rs.getString("lastName"))
+                        .add("course", rs.getString("course"))
+                        .add("duration", rs.getInt("duration"))
+                        .add("address", rs.getString("address"))
+                        .add("birthDate", rs.getString("birthDate"))
+                        .add("phoneNumber", rs.getInt("phoneNumber"));
 
                 jsonLastObj = jsonObject;
                 productArray.add(jsonObject);
             }
-                jsonString = jsonLastObj.build().toString();
+            jsonString = jsonLastObj.build().toString();
 
         } catch (SQLException ex) {
-            Logger.getLogger(Product.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (params.length == 0) {
             jsonString = productArray.build().toString();

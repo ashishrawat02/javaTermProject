@@ -6,7 +6,7 @@
     <artifactId>studentfeemodule</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
-    <name>studentfeemodule</name>
+    <name>studentRegistration</name>
   
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
