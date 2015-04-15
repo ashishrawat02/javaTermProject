@@ -15,6 +15,18 @@
         <servlet-name>login</servlet-name>  
         <url-pattern>/loginServlet</url-pattern>  
     </servlet-mapping>  
+    
+    
+    
+       <servlet>  
+        <servlet-name>LServlet</servlet-name>  
+        <servlet-class>Servlet.LServlet</servlet-class>  
+    </servlet>  
+  
+    <servlet-mapping>  
+        <servlet-name>LServlet</servlet-name>  
+        <url-pattern>/LServlet</url-pattern>  
+    </servlet-mapping> 
   
     <welcome-file-list>  
         <welcome-file>index.jsp</welcome-file>  

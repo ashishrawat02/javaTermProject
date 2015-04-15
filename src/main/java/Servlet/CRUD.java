@@ -62,15 +62,7 @@ public class CRUD {
 
     }
 
-    @GET
-    @Path("{id}/{password}")
-    @Produces("application/json")
-    public String doGet(@PathParam("id") String id, @PathParam("password") String password) {
-        String result = getResults("SELECT * FROM student where studentId = ? and password = ?", id, password);
-        return result;
-
-    }
-
+  
     @POST
     @Consumes("application/json")
     public void doPost(String str) {

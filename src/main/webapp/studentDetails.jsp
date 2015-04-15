@@ -1,12 +1,12 @@
 <%-- 
-    Document   : welcome
-    Created on : 14-Apr-2015, 4:55:32 PM
+    Document   : login
+    Created on : 10-Apr-2015, 5:47:30 PM
     Author     : c0649005
 --%>
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+        <head>
         <meta charset="UTF-8">
         <title>Student Registration</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -26,24 +26,31 @@
     </head>
     <body>
         <div class="bs-example">
-          <div class="container">
-            <form class="form-horizontal" >
+            <div class="container">
+ <jsp:useBean id="login" scope="request" class="beans.loginAdmin"></jsp:useBean>
+            <form class="form-horizontal" action="LServlet" method="POST">
                 <div class="form-group">
-                    <label for="id" class="control-label col-xs-2">Student ID</label>
+                    <label for="id" class="control-label col-xs-2">Admin</label>
                     <div class="col-xs-10"> 
-                        <input type="text" class="form-control" id="userName" placeholder="User id">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="User id">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">Password</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                 </div>
                 <span style="color:red;" id="error"></span>
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <button type="button" id="continueBtn" class="btn btn-primary">Continue</button>
+                        <input type="submit" id="loginBtn" class="btn btn-primary" value="Login">
                     </div>
                 </div>
-        
-    </form>
-              </div>
-          </div>
+                
+                </form>
+        </div>
+        </div>
 </body>  
 </html>  

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import login.LoginChecking;
+import beans.loginAdmin;
 
 /**
  *
@@ -36,24 +37,33 @@ public class LServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         response.setContentType("text/html");
-        try (PrintWriter out = response.getWriter()) {
-            int s = Integer.parseInt(request.getParameter("stuentId"));
-            System.out.println(s + "tfgyhujktyuhj");
-            String p = request.getParameter("password");
+         PrintWriter out = response.getWriter();
+        try {
+            loginAdmin login = new loginAdmin();
+           
+            login.setUsername(request.getParameter("username"));
+            login.setPassword(request.getParameter("password"));
+        
+            if (login.checkUser(request.getParameter("username"), request.getParameter("password"))) {
+                loginAdmin login1 = new loginAdmin();
+                login1.setUsername(String.valueOf(request.getParameter("username")));
+                
 
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                session.setAttribute("studentId", s);
-            }
+                HttpSession sessionUser = request.getSession();
+                sessionUser.setAttribute("username", login1.getUsername());
+              
 
-            if (LoginChecking.validate(s, p)) {
-                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
-                rd.forward(request, response);
+                RequestDispatcher rd1 = request.getRequestDispatcher("welcome.jsp");
+                rd1.forward(request, response);
+
             } else {
-                out.print("<p style=\"color:red\">Sorry student Id or password error</p>");
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-                rd.include(request, response);
+                RequestDispatcher rd2 = request.getRequestDispatcher("invalidLogin.jsp");
+                rd2.forward(request, response);
+
             }
+
+        } finally {
+            out.close();
         }
     }
 

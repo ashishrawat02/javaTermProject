@@ -3,11 +3,12 @@
     Created on : 10-Apr-2015, 4:24:19 PM
     Author     : c0649005
 --%>
+<%@page import="beans.loginAdmin"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+        <head>
         <meta charset="UTF-8">
-        <title>Example of Bootstrap 3 Horizontal Form Layout</title>
+        <title>Student Registration</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -25,28 +26,31 @@
     </head>
     <body>
         <div class="bs-example">
-
-            <form class="form-horizontal" >
+            <div class="container">
+ <jsp:useBean id="login" scope="request" class="beans.loginAdmin"></jsp:useBean>
+            <form class="form-horizontal" action="LServlet" method="POST">
                 <div class="form-group">
-                    <label for="id" class="control-label col-xs-2">Student ID</label>
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" id="id" placeholder="Student id">
+                    <label for="id" class="control-label col-xs-2">Admin</label>
+                    <div class="col-xs-10"> 
+                        <input type="text" class="form-control" id="username" name="username" placeholder="User id">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="inputPassword" class="control-label col-xs-2">Password</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                     </div>
                 </div>
                 <span style="color:red;" id="error"></span>
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <button type="button" id="loginBtn" class="btn btn-primary">Login</button>
+                        <input type="submit" id="loginBtn" class="btn btn-primary" value="Login">
                     </div>
                 </div>
+                
+                </form>
         </div>
-    </form>
+        </div>
 </body>  
 </html>  

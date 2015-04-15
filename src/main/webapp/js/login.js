@@ -8,7 +8,7 @@
 $(document).ready(function() {
 
     $("#loginBtn").click(function() {
-        var id = $("#id").val();
+        var id = $("#user").val();
         var password = $("#inputPassword").val();
         if (id === '' && password === '') {
             $("#error").text("Please enter the username and password.");
@@ -16,8 +16,7 @@ $(document).ready(function() {
         else {
             var url = './rs/student/' + id + '/' + password;
             $.getJSON(url, function(data) {
-
-                window.location.href = "./welcome.jsp";
+              window.location.href = "./welcome.jsp";
 
             });
         }
