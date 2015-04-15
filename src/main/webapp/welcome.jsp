@@ -41,6 +41,12 @@
                         <button type="button" id="continueBtn" class="btn btn-primary">Continue</button>
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <button type="button" id="addBtn" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
         
     </form>
               </div>

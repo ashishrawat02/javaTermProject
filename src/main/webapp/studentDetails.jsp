@@ -30,22 +30,69 @@
  <jsp:useBean id="login" scope="request" class="beans.loginAdmin"></jsp:useBean>
             <form class="form-horizontal" action="LServlet" method="POST">
                 <div class="form-group">
-                    <label for="id" class="control-label col-xs-2">Admin</label>
+                    <label for="id" class="control-label col-xs-2">Student ID:</label>
                     <div class="col-xs-10"> 
-                        <input type="text" class="form-control" id="username" name="username" placeholder="User id">
+                        <input type="text" class="form-control" id="studentId" name="studentId">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">Password</label>
+                    <label for="inputPassword" class="control-label col-xs-2">First Name</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="fName" name="fName">
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">Last Name</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="lName" name="lname">
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">Course</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="course" name="course">
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">Duration</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="duration" name="duration">
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">Address</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="address" name="address">
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">date of Birth</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="dob" name="dob">
+                    </div>
+                </div>
+                
+                  <div class="form-group">
+                    <label for="inputPassword" class="control-label col-xs-2">Phone Number</label>
+                    <div class="col-xs-10">
+                        <input type="password" class="form-control" id="number" name="number">
                     </div>
                 </div>
                 <span style="color:red;" id="error"></span>
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <input type="submit" id="loginBtn" class="btn btn-primary" value="Login">
+                        <input type="submit" id="updateBtn" class="btn btn-primary" value="update">
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <div class="col-xs-offset-2 col-xs-10">
+                        <input type="submit" id="deleteBtn" class="btn btn-primary" value="Delete">
                     </div>
                 </div>
                 
