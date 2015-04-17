@@ -4,73 +4,58 @@
  * and open the template in the editor.
  */
 
-$(document).ready(function () {
+$(document).ready(function() {
 
-    $('#continueBtn').click(function () {
-       // alert("Button Click");
+    $('#continueBtn').click(function() {
+        // alert("Button Click");
 
         var student = $('#userName').val();
-        
-       
+
+
         if (student === '') {
             console.log('Student id is required!!!');
             $("#errorMsg").text("Student id is required!!!");
         }
-        else if(!(jQuery.isNumeric(student))){
+        else if (!(jQuery.isNumeric(student))) {
             console.log('User id should be numeric');
             $("#errorMsg").text("User id should be numeric");
         }
         else {
-           
+
             var url = 'rs/student/' + student;
             //console.log(url);
-            
-            $.getJSON(url, function (data) {
-                
-            if(data)
-            {
-                alert("sgs");
-                
-            }
-            else
-            {
-                alert("sfsjf");
-            }
-                    
-                
-                alert(data);
-               // console.log(data);
-               if(data)
-               {
-               
-                $.each(data, function(index, row){
-                  
-                 $('#showalldata').fadeIn('slow');
-               $('#givehere').append('<tr><td>'+row+'</td></tr>');
-               
-        
-                    
-               
-                });
-                
-               }
-               
-               else
-               {
-                   alert("zdvhgz");
-               }
-               // if (!jQuery.isEmptyObject(data)) {
-               if(data.length > 0){
-                   //console.log('inside data not null'); 
-                   //setItem("id",data.id);
-                   alert("gdfiugh");
-                    window.location.replace = "./addStudentDetails.jsp";
+
+            $.getJSON(url, function(data) {
+
+
+
+
+                // console.log(data);
+                if (data.length > 0)
+                {
+
+                    $.each(data, function(index, row) {
+
+                        $('#showalldata').fadeIn('slow');
+                        $('#givehere').append('<tr><td>' + row.studentId + '</td></tr>');
+                        $('#givehere').append('<tr><td>' + row.firstName + '</td></tr>');
+                        $('#givehere').append('<tr><td>' + row.lastName + '</td></tr>');
+                        $('#givehere').append('<tr><td>' + row.birthDate + '</td></tr>');
+                        $('#givehere').append('<tr><td>' + row.course + '</td></tr>');
+                        $('#givehere').append('<tr><td>' + row.duration + '</td></tr>');
+                        $('#givehere').append('<tr><td>' + row.address + '</td></tr>');
+                        $('#givehere').append('<tr><td>' + row.phoneNumber + '</td></tr>');
+
+                    });
+
                 }
-                else {
-                    console.log('inside data null'); 
-                    $("#errorMsg").text("Student id does not exist");
-                    
+
+                else
+                {
+                    $('#showalldata').fadeIn('slow');
+                    $('#givehere').append("NO DATA FOUND");
                 }
+
             });
         }
 
