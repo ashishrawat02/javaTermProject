@@ -22,7 +22,7 @@ $(document).ready(function () {
         }
         else {
            
-            var url = './rs/student/' + student;
+            var url = 'rs/student/' + student;
             //console.log(url);
             
             $.getJSON(url, function (data) {

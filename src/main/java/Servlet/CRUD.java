@@ -11,6 +11,7 @@ package Servlet;
  */
 import database.Credentials;
 import java.io.StringReader;
+import static java.lang.System.out;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.json.stream.JsonParser;
 import javax.ws.rs.Consumes;
@@ -87,7 +89,7 @@ public class CRUD {
             }
         }
         System.out.println(map);
-
+        String studentId = map.get("studentId");
         String fName = map.get("firstName");
         String lName = map.get("lastName");
         String cor = map.get("course");
@@ -96,8 +98,9 @@ public class CRUD {
         String bir = map.get("birthDate");
         String num = map.get("phoneNumber");
 
-        doUpdate("INSERT INTO student (firstName,lastName,course,duration,address,birthDate,phoneNumber)VALUES (?,?,?,?,?,?,?)", fName,
+        doUpdate("INSERT INTO student (studentId,firstName,lastName,course,duration,address,birthDate,phoneNumber)VALUES (?,?,?,?,?,?,?,?)",studentId, fName,
                 lName, cor, dur, ad, bir, num);
+        
     }
 
     @PUT
@@ -162,8 +165,9 @@ public class CRUD {
 
     private String getResults(String query, String... params) {
         JsonArrayBuilder productArray = Json.createArrayBuilder();
+        
         JsonObjectBuilder jsonLastObj = null;
-        String jsonString = new String();
+        String jsonString = "";
         try (Connection conn = Credentials.getConnection()) {
             PreparedStatement pstmt = conn.prepareStatement(query);
             for (int i = 1; i <= params.length; i++) {
@@ -172,7 +176,7 @@ public class CRUD {
             ResultSet rs = pstmt.executeQuery();
 
             while (rs.next()) {
-                JsonObjectBuilder jsonObject = Json.createObjectBuilder()
+                JsonObject json  = Json.createObjectBuilder()
                         .add("studentId", rs.getInt("studentId"))
                         .add("firstName", rs.getString("firstName"))
                         .add("lastName", rs.getString("lastName"))
@@ -180,12 +184,12 @@ public class CRUD {
                         .add("duration", rs.getInt("duration"))
                         .add("address", rs.getString("address"))
                         .add("birthDate", rs.getString("birthDate"))
-                        .add("phoneNumber", rs.getInt("phoneNumber"));
+                        .add("phoneNumber", rs.getInt("phoneNumber")).build();
 
-                jsonLastObj = jsonObject;
-                productArray.add(jsonObject);
+               productArray.add(json);
             }
-            jsonString = jsonLastObj.build().toString();
+            jsonString = productArray.build().toString();
+           
 
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);

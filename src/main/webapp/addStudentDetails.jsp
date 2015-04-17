@@ -22,13 +22,44 @@
                 padding-top: 7px;
             }
         </style>
-        <script src="js/addStudentDetails.js"></script> 
+      
+        <script >
+            
+            
+$(document).ready(function() {
+
+    $('#updateBtn').click(function() {
+       alert("button");
+            $.ajax({
+                url: 'rs/student/',
+                type: 'POST',
+                contentType: 'application/json',
+                dataType: 'json',
+                data: JSON.stringify({
+                    "studentId": $('#studentId').val(),
+                    "firstName": $('#firstName').val(),
+                    "lastName": $('#lastName').val(),
+                    "course": $('#course').val(),
+                    "duration":$( "#duration").val(),
+                    "address": $('#address').val(),
+                    "birthDate": $('#dob').val(),
+                    "phoneNumber": $('#phoneNumber').val()
+                }),
+                success: function(data) {
+            alert(data);
+                    window.location.replace('welcome.jsp');
+                }
+            });
+        
+    });
+});
+        </script> 
     </head>
     <body>
         <div class="bs-example">
             <div class="container">
- <jsp:useBean id="login" scope="request" class="beans.loginAdmin"></jsp:useBean>
-            <form class="form-horizontal" action="LServlet" method="POST">
+ 
+            <form class="form-horizontal">
                 <div class="form-group">
                     <label for="id" class="control-label col-xs-2">Student ID:</label>
                     <div class="col-xs-10"> 
@@ -36,63 +67,63 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">First Name</label>
+                    <label for="fName" class="control-label col-xs-2">First Name</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="fName" name="fName">
+                        <input type="text" class="form-control" id="firstName" name="fName">
                     </div>
                 </div>
                 
                   <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">Last Name</label>
+                    <label for="lName" class="control-label col-xs-2">Last Name</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="lName" name="lname">
+                        <input type="text" class="form-control" id="lastName" name="lname">
                     </div>
                 </div>
                 
                   <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">Course</label>
+                    <label for="course" class="control-label col-xs-2">Course</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="course" name="course">
+                        <input type="text" class="form-control" id="course" name="course">
                     </div>
                 </div>
                 
                   <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">Duration</label>
+                    <label for="duration" class="control-label col-xs-2">Duration</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="duration" name="duration">
+                        <input type="text" class="form-control" id="duration" name="duration">
                     </div>
                 </div>
                 
                   <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">Address</label>
+                    <label for="address" class="control-label col-xs-2">Address</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="address" name="address">
+                        <input type="text" class="form-control" id="address" name="address">
                     </div>
                 </div>
                 
                   <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">date of Birth</label>
+                    <label for="dob" class="control-label col-xs-2">date of Birth</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="dob" name="dob">
+                        <input type="text" class="form-control" id="dob" name="dob">
                     </div>
                 </div>
                 
                   <div class="form-group">
-                    <label for="inputPassword" class="control-label col-xs-2">Phone Number</label>
+                    <label for="number" class="control-label col-xs-2">Phone Number</label>
                     <div class="col-xs-10">
-                        <input type="password" class="form-control" id="number" name="number">
+                        <input type="text" class="form-control" id="phoneNumber" name="number">
                     </div>
                 </div>
                 <span style="color:red;" id="error"></span>
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <input type="submit" id="updateBtn" class="btn btn-primary" value="Save">
+                        <input type="button" id="updateBtn" class="btn btn-primary" value="Save">
                     </div>
                 </div>
                  <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <input type="submit" id="deleteBtn" class="btn btn-primary" value="Clear">
+                        <input type="button" id="deleteBtn" class="btn btn-primary" value="Clear">
                     </div>
                 </div>
                 

@@ -22,7 +22,7 @@
                 padding-top: 7px;
             }
         </style>
-        <script src="js/login.js"></script> 
+        
     </head>
     <body>
         <div class="bs-example">
