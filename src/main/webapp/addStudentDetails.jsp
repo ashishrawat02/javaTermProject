@@ -22,7 +22,7 @@
                 padding-top: 7px;
             }
         </style>
-        <script src="js/login.js"></script> 
+        <script src="js/addStudentDetails.js"></script> 
     </head>
     <body>
         <div class="bs-example">
@@ -87,12 +87,12 @@
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <input type="submit" id="updateBtn" class="btn btn-primary" value="update">
+                        <input type="submit" id="updateBtn" class="btn btn-primary" value="Save">
                     </div>
                 </div>
                  <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <input type="submit" id="deleteBtn" class="btn btn-primary" value="Delete">
+                        <input type="submit" id="deleteBtn" class="btn btn-primary" value="Clear">
                     </div>
                 </div>
                 

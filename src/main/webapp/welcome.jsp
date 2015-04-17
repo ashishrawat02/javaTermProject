@@ -21,15 +21,20 @@
             .form-horizontal .control-label{
                 padding-top: 7px;
             }
+            
+            #showalldata{
+                display: none;
+            }
         </style>
-        <script src="js/login.js"></script> 
+        <script src="js/studentId.js"></script> 
+        
     </head>
     <body>
         <div class="bs-example">
           <div class="container">
-            <form class="form-horizontal" >
+              <form class="form-horizontal" >
                 <div class="form-group">
-                    <label for="id" class="control-label col-xs-2">Student ID</label>
+                    <label for="userName" class="control-label col-xs-2">Student ID</label>
                     <div class="col-xs-10"> 
                         <input type="text" class="form-control" id="userName" placeholder="User id">
                     </div>
@@ -38,14 +43,18 @@
 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <button type="button" id="continueBtn" class="btn btn-primary">Continue</button>
+                        <!--<button type="submit" id="continueBtn" class="btn btn-primary">Continue</button> -->
+                        <input type="button" id="continueBtn" class="btn btn-primary" value="Continue" />
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <div class="col-xs-offset-2 col-xs-10">
-                        <button type="button" id="addBtn" class="btn btn-primary">Add</button>
+                        <a href="addStudentDetails.jsp" <button type="button" id="addBtn" class="btn btn-primary">Add</button></a>
                     </div>
+                </div>
+                <div id="showalldata">
+                    <table id="givehere"></table>
                 </div>
         
     </form>
