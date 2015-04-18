@@ -35,6 +35,7 @@
                     alert(recId);
                     $('#saveDiv').hide();
                     var url = 'rs/student/' + recId;
+                    console.log('url:' + url);
                     $.getJSON(url, function(data) {
                         if (data.length > 0)
                         {
@@ -48,19 +49,48 @@
                                 $('#dob').val(row.birthDate);
                                 $('#phoneNumber').val(row.phoneNumber);
                             });
-
                         }
 
                     });
-                }else{
+                } else {
                     $('#updateDiv').hide();
                 }
-                
                 $('#updateBtn').click(function() {
-                    alert("write put");
-                    
-                });
+                    alert("inside update button");
+                    var studentId = $('#studentId').val();
+                    var firstName = $('#firstName').val();
+                    var lastName = $('#lastName').val();
+                    var course = $('#course').val();
+                    var duration = $('#duration').val();
+                    var address = $('#address').val();
+                    var birthdate = $('#dob').val();
+                    var phoneNumber = $('#phoneNumber').val();
+                    var val1 = {studentId: $('#studentId').val(), firstName: $('#firstName').val(), lastName: $('#lastName').val(),
+                        course: $('#course').val(), duration: $('#duration').val(), address: $('#address').val(),
+                        birthDate: $('#dob').val(), phoneNumber: $('#phoneNumber').val()};
+                    if (studentId === '' || firstName === '' || lastName === '' || course === '' || duration === ''
+                            || address === '' || birthdate === '' || phoneNumber === '') {
+                        alert("write put");
+                    }
+                    else {
+                        alert(studentId);
+                        $.ajax({
+                            url: 'rs/student/' + studentId,
+                            type: 'PUT',
+                            data: JSON.stringify(val1),
+                            contentType: 'application/json',
+                            dataType: 'json',
+                            success: function(data) {
+                                // $("#closeProductDialog").click();
+                                //  $("#dialogErr").text("");
+                                
+                                    window.location.replace('welcome.jsp');
+                                ;
+                            }
+                        });
+                    }
 
+                });
                 $('#saveBtn').click(function() {
                     alert("button");
                     $.ajax({
@@ -83,7 +113,6 @@
                             window.location.replace('welcome.jsp');
                         }
                     });
-
                 });
             });
         </script> 
@@ -91,7 +120,7 @@
     <body>
         <div class="bs-example">
             <div class="container">
-
+        <h1>PLEASE ENTER STUDENT DETAILS</h1>
                 <form class="form-horizontal">
                     <div class="form-group">
                         <label for="id" class="control-label col-xs-2">Student ID:</label>

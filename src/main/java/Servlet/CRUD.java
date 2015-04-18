@@ -107,6 +107,8 @@ public class CRUD {
     @Path("{id}")
     @Consumes("application/json")
     public void doPut(@PathParam("id") String id, String str) {
+        System.out.println("inside do put");
+                
         JsonParser parser = Json.createParser(new StringReader(str));
         Map<String, String> map = new HashMap<>();
         String name = "", value;
