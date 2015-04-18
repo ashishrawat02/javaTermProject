@@ -5,8 +5,7 @@
  */
 
 $(document).ready(function() {
-    
-    $('.deletethis').on("click", "")
+   
 
     $('#continueBtn').click(function() {
         // alert("Button Click");
@@ -60,6 +59,24 @@ $(document).ready(function() {
             });
         }
 
+    });
+    
+    $('#showalldata').on("click",'.deletethis', function() {
+        alert('oky');
+         var id=$(this).attr('Id');
+          alert(id);
+        $.ajax({
+                url: 'rs/student/'+id+'',
+                type: 'delete',
+                contentType: 'application/json',
+                dataType: 'json',
+                success: function(data) {
+                   alert("deleted");
+                   location.href="http://localhost:8080/studentfeemodule/welcome.jsp";
+                   
+                }
+            }); 
+        
     });
 
 });
