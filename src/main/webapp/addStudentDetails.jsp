@@ -40,6 +40,13 @@
                         {
                             $.each(data, function(index, row) {
                                 $('#studentId').val(row.studentId);
+                                $('#firstName').val(row.firstName);
+                                $('#lastName').val(row.lastName);
+                                $('#course').val(row.course);
+                                $('#duration').val(row.duration);
+                                $('#address').val(row.address);
+                                $('#dob').val(row.birthDate);
+                                $('#phoneNumber').val(row.phoneNumber);
                             });
 
                         }
@@ -68,7 +75,7 @@
                             "course": $('#course').val(),
                             "duration": $("#duration").val(),
                             "address": $('#address').val(),
-                            "birthDate": $('#birthdate').val(),
+                            "birthDate": $('#dob').val(),
                             "phoneNumber": $('#phoneNumber').val()
                         }),
                         success: function(data) {
@@ -130,7 +137,7 @@
                     <div class="form-group">
                         <label for="dob" class="control-label col-xs-2">date of Birth</label>
                         <div class="col-xs-10">
-                            <input type="text" class="form-control" id="birthdate" name="dob">
+                            <input type="text" class="form-control" id="dob" name="dob">
                         </div>
                     </div>
 
@@ -152,7 +159,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-xs-offset-2 col-xs-10">
-                            <input type="button" id="deleteBtn" class="btn btn-primary" value="Clear">
+                            <input type="reset" id="deleteBtn" class="btn btn-primary" value="Clear">
                         </div>
                     </div>
 
