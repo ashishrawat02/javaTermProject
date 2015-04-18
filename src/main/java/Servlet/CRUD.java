@@ -138,7 +138,7 @@ public class CRUD {
         String num = map.get("phoneNumber");
 
         doUpdate("update student set studentId = ?, firstName = ?, lastName = ?, course = ?,"
-                + "duration = ?, address = ?, birthDate = ?, phoneNumber = ?, where studentId = ?", id, fName, lName, cor, dur, ad, bir, num, id);
+                + "duration = ?, address = ?, birthDate = ?, phoneNumber = ? where studentId = ?", id, fName, lName, cor, dur, ad, bir, num, id);
     }
 
     @DELETE

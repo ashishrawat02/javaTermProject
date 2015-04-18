@@ -5,6 +5,8 @@
  */
 
 $(document).ready(function() {
+    
+    $('.deletethis').on("click", "")
 
     $('#continueBtn').click(function() {
         // alert("Button Click");
@@ -37,15 +39,14 @@ $(document).ready(function() {
                     $.each(data, function(index, row) {
 
                         $('#showalldata').fadeIn('slow');
-                        $('#givehere').append('<tr><td>' + row.studentId + '</td></tr>');
-                        $('#givehere').append('<tr><td>' + row.firstName + '</td></tr>');
-                        $('#givehere').append('<tr><td>' + row.lastName + '</td></tr>');
-                        $('#givehere').append('<tr><td>' + row.birthDate + '</td></tr>');
-                        $('#givehere').append('<tr><td>' + row.course + '</td></tr>');
-                        $('#givehere').append('<tr><td>' + row.duration + '</td></tr>');
-                        $('#givehere').append('<tr><td>' + row.address + '</td></tr>');
-                        $('#givehere').append('<tr><td>' + row.phoneNumber + '</td></tr>');
-
+                        $('#givehere').append('<tr><td> Student ID: ' + row.studentId + '</td></tr>');
+                        $('#givehere').append('<tr><td>Name: ' + row.firstName + row.lastName +'</td></tr>');
+                        $('#givehere').append('<tr><td>D.O.B: ' + row.birthDate + '</td></tr>');
+                        $('#givehere').append('<tr><td>Cource: ' + row.course + '</td></tr>');
+                        $('#givehere').append('<tr><td>Duration: ' + row.duration + '</td></tr>');
+                        $('#givehere').append('<tr><td>Address: ' + row.address + '</td></tr>');
+                        $('#givehere').append('<tr><td>Phone Number: ' + row.phoneNumber + '</td></tr>');
+                        $('#givehere').append('<input type="button" value= "delete" id="'+row.studentId+'" class="deletethis"/>');
                     });
 
                 }

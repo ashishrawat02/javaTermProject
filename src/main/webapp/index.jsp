@@ -27,6 +27,7 @@
     <body>
         <div class="bs-example">
             <div class="container">
+                <h1>ADMINISTER LOGIN</h1>
  <jsp:useBean id="login" scope="request" class="beans.loginAdmin"></jsp:useBean>
             <form class="form-horizontal" action="LServlet" method="POST">
                 <div class="form-group">

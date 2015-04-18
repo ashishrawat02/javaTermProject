@@ -32,6 +32,7 @@
     <body>
         <div class="bs-example">
           <div class="container">
+              <h1>PLEASE ENTER STUDENT ID</h1>
               <form class="form-horizontal" >
                 <div class="form-group">
                     <label for="userName" class="control-label col-xs-2">Student ID</label>
