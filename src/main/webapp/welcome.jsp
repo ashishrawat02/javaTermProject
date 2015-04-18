@@ -26,7 +26,92 @@
                 display: none;
             }
         </style>
-        <script src="js/studentId.js"></script> 
+        <script>
+            
+            
+$(document).ready(function() {
+
+$('#resetBtn').click(function() {
+    location.href = "http://localhost:8080/studentfeemodule/welcome.jsp";
+});
+    $('#continueBtn').click(function() {
+        // alert("Button Click");
+
+        var student = $('#userName').val();
+
+
+        if (student === '') {
+            console.log('Student id is required!!!');
+            $("#errorMsg").text("Student id is required!!!");
+        }
+        else if (!(jQuery.isNumeric(student))) {
+            console.log('User id should be numeric');
+            $("#errorMsg").text("User id should be numeric");
+        }
+        else {
+
+            var url = 'rs/student/' + student;
+            //console.log(url);
+
+            $.getJSON(url, function(data) {
+
+                // console.log(data);
+                if (data.length > 0)
+                {
+                    $.each(data, function(index, row) {
+
+                        $('#showalldata').fadeIn('slow');
+                        $('#givehere').append('<tr><td> Student ID: ' + row.studentId + '</td></tr>');
+                        $('#givehere').append('<tr><td>Name: ' + row.firstName + row.lastName + '</td></tr>');
+                        $('#givehere').append('<tr><td>D.O.B: ' + row.birthDate + '</td></tr>');
+                        $('#givehere').append('<tr><td>Cource: ' + row.course + '</td></tr>');
+                        $('#givehere').append('<tr><td>Duration: ' + row.duration + '</td></tr>');
+                        $('#givehere').append('<tr><td>Address: ' + row.address + '</td></tr>');
+                        $('#givehere').append('<tr><td>Phone Number: ' + row.phoneNumber + '</td></tr>');
+                        $('#givehere').append('<input type="button" value= "delete" id="' + row.studentId + '" class="deletethis btn btn-primary"/>');
+                        $('#givehere').append('<a href=\'addStudentDetails.jsp?id='+row.studentId+'\'><input type="button" value= "update" id="' + row.studentId + '" class="updatethis btn btn-primary"/></a>');
+                        $('#continueDiv').hide();
+                    });
+
+                }
+
+                else
+                {
+                    $('#showalldata').fadeIn('slow');
+                    $('#givehere').append("NO DATA FOUND");
+                }
+
+            });
+        }
+
+    });
+
+    $('#showalldata').on("click", '.deletethis', function() {
+        alert('oky');
+        var id = $(this).attr('Id');
+        alert(id);
+        $.ajax({
+            url: 'rs/student/' + id + '',
+            type: 'delete',
+            contentType: 'application/json',
+            dataType: 'json',
+            success: function(data) {
+                alert("deleted");
+                location.href = "http://localhost:8080/studentfeemodule/welcome.jsp";
+               
+            }
+        });
+
+    });
+
+});
+
+            
+            
+            
+            
+            
+        </script> 
         
     </head>
     <body>
@@ -43,9 +128,12 @@
                 <span style="color:red;" id="error"></span>
 
                 <div class="form-group">
-                    <div class="col-xs-offset-2 col-xs-10">
-                        <!--<button type="submit" id="continueBtn" class="btn btn-primary">Continue</button> -->
-                        <input type="button" id="continueBtn" class="btn btn-primary" value="Continue" />
+                    <div class="col-xs-offset-2 col-xs-10" id="continueDiv">
+                      <input type="button" id="continueBtn" class="btn btn-primary" value="Continue" />
+                    </div>
+                    <br><br>
+                    <div class="col-xs-offset-2 col-xs-10" id="">
+                      <input type="button" id="resetBtn" class="btn btn-primary" value="Reset" />
                     </div>
                 </div>
                 
