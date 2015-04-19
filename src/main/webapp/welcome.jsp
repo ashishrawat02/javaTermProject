@@ -62,7 +62,7 @@ $('#resetBtn').click(function() {
 
                         $('#showalldata').fadeIn('slow');
                         $('#givehere').append('<tr><td> Student ID: ' + row.studentId + '</td></tr>');
-                        $('#givehere').append('<tr><td>Name: ' + row.firstName + row.lastName + '</td></tr>');
+                        $('#givehere').append('<tr><td>Name: ' + row.firstName+'  ' + row.lastName + '</td></tr>');
                         $('#givehere').append('<tr><td>D.O.B: ' + row.birthDate + '</td></tr>');
                         $('#givehere').append('<tr><td>Cource: ' + row.course + '</td></tr>');
                         $('#givehere').append('<tr><td>Duration: ' + row.duration + '</td></tr>');
